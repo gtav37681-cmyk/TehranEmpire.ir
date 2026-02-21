@@ -1,0 +1,199 @@
+.crystal-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(to bottom, rgba(13, 17, 23, 0.95), rgba(13, 17, 23, 0.8));
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 168, 255, 0.1);
+    padding: 1rem 0;
+    animation: headerSlideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.crystal-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.left-menu, .right-menu {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 168, 255, 0.2);
+    background: rgba(0, 168, 255, 0.05);
+    letter-spacing: 0.5px;
+    opacity: 0;
+    animation: linkFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.nav-link:hover {
+    color: #fff;
+    border-color: rgba(0, 168, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 168, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.crystal-logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.crystal-logo-wrapper {
+    position: relative;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+.crystal-logo-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.crystal-logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: linear-gradient(45deg, rgba(0,168,255,0.1), rgba(0,168,255,0.05));
+    border-radius: 10px;
+    border: 1px solid rgba(0,168,255,0.2);
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.crystal-logo::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,168,255,0.1) 0%, transparent 70%);
+    animation: rotateCrystal 10s linear infinite;
+}
+
+.rp-text, .wanted-text {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.8rem;
+    position: relative;
+    z-index: 2;
+}
+
+.rp-text {
+    color: #fff;
+    text-shadow: 0 0 15px rgba(0,168,255,0.8);
+}
+
+.wanted-text {
+    background: linear-gradient(135deg, var(--primary-blue), #0099ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.crystal-divider {
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to bottom, transparent, var(--primary-blue), transparent);
+    position: relative;
+    z-index: 2;
+}
+
+.crystal-reflection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255,255,255,0.1), 
+        transparent);
+    transform: translateX(-100%);
+    animation: reflectionSlide 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    z-index: 1;
+}
+
+.crystal-glow {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, 
+        rgba(0,168,255,0.15) 0%, 
+        transparent 70%);
+    animation: glowPulse 3s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes headerSlideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes linkFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotateCrystal {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes reflectionSlide {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@media (max-width: 768px) {
+    .left-menu, .right-menu {
+        display: none;
+    }
+
+    .crystal-logo-container {
+        position: relative;
+        left: 0;
+        transform: none;
+        margin: 0 auto;
+    }
+
+    .crystal-logo {
+        transform: scale(0.8);
+    }
+}
